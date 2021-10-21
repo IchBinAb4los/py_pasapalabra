@@ -66,7 +66,7 @@ class App:
         self.root = Tk()
         self.root.title("Pasapalabra")
         self.root.geometry(str(x)+"x"+str(y))
-        self.root.iconbitmap("img/icon.ico")
+        #self.root.iconbitmap("img/icon.ico")
         self.root.resizable(False, False)
         self.c = Canvas(self.root, width=x, height=y, bg="#afded8")
         self.c.pack()
