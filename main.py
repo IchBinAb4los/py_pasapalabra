@@ -11,7 +11,7 @@ TIME = 230
 x, y, s = 500, 500, 5
 circlesPos = {}
 
-questions = {"A":["Planta con raíz comestible, de color blanco y olor fuerte. ", "ajo"],
+questions = {"A":["Planta con raíz comestible, de color blanco y olor fuerte.", "ajo"],
              "B":["Palo de madera que sirve para apoyarse al andar.", "baston"],
              "C":["Planta verde con muchas espinas.", "cactus"],
              "D":["Estructura anatómica calcificada que se localiza en la cavidad oral.", "diente"],
@@ -66,9 +66,9 @@ class App:
         self.root = Tk()
         self.root.title("Pasapalabra")
         self.root.geometry(str(x)+"x"+str(y))
-        #self.root.iconbitmap("img/icon.ico")
+        self.root.iconbitmap("img/icon.ico")
         self.root.resizable(False, False)
-        self.c = Canvas(self.root, width=x, height=y, bg="#afded8")
+        self.c = Canvas(self.root, width=x, height=y, bg="#dedede")
         self.c.pack()
         self.circles = self.createCircles()
         self.fQuestion = self.createfQuestion()
@@ -93,7 +93,7 @@ class App:
         self.c.itemconfig(self.fQuestion, text=q)
         for k,v in self.circles.items():
             if k == l:
-                self.c.itemconfig(self.circles[l], fill="#24fbff")
+                self.c.itemconfig(self.circles[l], fill="#25b8d9")
 
     def finish(self):
         self.c.itemconfig(self.fQuestion, text=f"¡Tuviste {self.right} aciertos y {self.wrong} errores!")
@@ -104,7 +104,7 @@ class App:
     def PP(self):
         for k, v in self.circles.items():
             if k == self.currentLetter:
-                self.c.itemconfig(self.circles[self.currentLetter], fill="#fff000")
+                self.c.itemconfig(self.circles[self.currentLetter], fill="#b3bf06")
         if not self.currentLetter == "X":
             self.currentLetter = _letters[self.currentLetterIndex + 1]
             self.updateQuestion(self.currentLetter, questions[self.currentLetter][0], questions[self.currentLetter][1])
@@ -118,10 +118,10 @@ class App:
         ans = questions[self.currentLetter][1]
         color = ""
         if _try == ans:
-            color = "#00ff00"
+            color = "#1fbf06"
         else:
-            color = "#ff0000"
-        if color == "#00ff00":
+            color = "#bf0606"
+        if color == "#1fbf06":
             self.right += 1
         else:
             self.wrong += 1
@@ -183,13 +183,13 @@ class App:
         return b
 
     def createfTime(self):
-        c = self.c.create_oval(20, 410, 90, 480, fill="#cad9d7", width=2)
+        c = self.c.create_oval(20, 410, 90, 480, fill="#e6e6e6", width=2)
         t = self.c.create_text(eval("(20+90)//2"), eval("(410+480)//2"), text=str(self.timeLeft),
                                font=DEFAULT_TIME)
         return t
 
     def createfQuestion(self):
-        l = self.c.create_rectangle(30, 30, x-30, 70, fill="#cad9d7", width=2)
+        l = self.c.create_rectangle(30, 30, x-30, 70, fill="#e6e6e6", width=2)
         t = self.c.create_text(eval("(30+x-30)//2"), eval("(30+70)//2"), text="", font=DEFAULT_QUESTION)
         return t
 
@@ -197,7 +197,7 @@ class App:
         _dict = {}
         for k,v in circlesPos.items():
             x1, y1, x2, y2 = v
-            c = self.c.create_oval(x1, y1, x2, y2, fill="#2b3bed", width=1.5)
+            c = self.c.create_oval(x1, y1, x2, y2, fill="#1d53ab", width=1.5)
             _t = self.c.create_text(eval("(x1+x2)//2"), eval("(y1+y2)//2"), text=k, fill="#000000", font=SHADOW_DEFAULT_LETTER)
             t = self.c.create_text(eval("(x1+x2)//2"), eval("(y1+y2)//2"), text=k, fill="#ffffff", font=DEFAULT_LETTER)
             _dict[self.c.itemcget(t, "text")] = c
